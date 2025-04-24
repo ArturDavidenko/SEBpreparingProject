@@ -1,3 +1,14 @@
-123123
+<div class="header-content">
+    <h4>TEST PROJECT</h4>
+</div>
 
-<app-test-card></app-test-card>
+<div class="profile-card-wrapper">
+    @for (profile of profiles; track profile.id){
+        <app-test-card [profile]="profile">
+        </app-test-card>
+    }
+</div>
+
+
+
+

@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 32px;
+    align-items: center;
 }
 
 img{
@@ -22,6 +23,7 @@ img{
     display: grid;
     grid-template-columns: 70px 1fr;
     grid-gap: 20px;
+    align-items: center;
 }
 
 .profile-card-name{

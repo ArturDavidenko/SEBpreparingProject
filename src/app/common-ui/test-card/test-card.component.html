@@ -1,15 +1,27 @@
+@if (profile){
 <div class="profile-card">
     <div class="avatar-name">
         <img src="/assets/images/image.png" alt="avatar" class="">
         <div class="profile-card-name">
-            <strong>Artur Davidenko</strong>
-            <span>CUber_</span>
+            <strong>{{ profile.firstName }} {{ profile.lastName }}</strong>
         </div>
     </div>
 
-    <div class="profile-card-description">
-        
+    <div class="profile-card-content">
+       Role: {{ profile.role }}
+    </div>
+
+    <div class="profile-card-count-of-orders">
+        Orders Count: {{ profile.orders.length }}
+    </div>
+
+    <div class="profile-card-section-btns">
+        <button class="btn">Subscribe</button>
     </div>
 
 </div>
+}
+@else {
+    <div>NETU PROFILES</div>
+}
     

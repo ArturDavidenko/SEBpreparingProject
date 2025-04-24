@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Profile } from '../../data/services/interfaces/profile.interface';
 
 @Component({
   selector: 'app-test-card',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
 })
 
 export class TestCardComponent {
-
+  @Input() profile!: Profile;
 }
