@@ -10,4 +10,5 @@ import { Profile } from '../../data/services/interfaces/profile.interface';
 
 export class TestCardComponent {
   @Input() profile!: Profile;
+  
 }
