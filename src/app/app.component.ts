@@ -1,12 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { TestCardComponent } from './common-ui/test-card/test-card.component';
-import { ProfileService } from './data/services/profile.service';
-import { Profile } from './data/services/interfaces/profile.interface';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [TestCardComponent, RouterModule],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
