@@ -1,17 +1,21 @@
-<form action="" class="login-form">
+<form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="form">
     <h1 style="margin-bottom: 60px;">Join</h1>
 
     <label class="label-form">
         Last name
-        <input class="input-form" type="text" placeholder="Write ur last name">
+        <input
+        formControlName="employeerLastName" 
+        class="input-form" type="text" placeholder="Write ur last name">
     </label>
 
     <label class="label-form">
         Password
-        <input class="input-form" type="text" placeholder="Write ur password">
+        <input 
+        formControlName="employeerPassword"
+        class="input-form" type="text" placeholder="Write ur password">
     </label>
 
-    <button class="btn btn-shadow">Join</button>
+    <button class="btn btn-shadow" type="submit">Join</button>
 </form>
 
 <img src="/assets/images/Login-image.jpg" alt="logo">

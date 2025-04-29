@@ -1,12 +1,42 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterModule],
+  imports: [RouterModule, ReactiveFormsModule],
+  standalone: true,
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
+
 export class LoginPageComponent {
 
+  authService = inject(AuthService)
+  router = inject(Router);
+
+  form = new FormGroup({
+    employeerLastName: new FormControl(null, Validators.required),
+    employeerPassword: new FormControl(null, Validators.required)
+  }) 
+
+  onSubmit() {
+  
+    if (this.form.valid){
+      console.log(this.form.value)
+      //@ts-ignore
+      this.authService.loginAndSetCookie(this.form.value).subscribe({
+        next: (response) => {
+          console.log("Success", response);
+          this.router.navigate(['']);
+        },
+        error: (error) => {
+          console.log("Error", error);
+        }
+        
+      });
+    }
+    
+  }
 }
