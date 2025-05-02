@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { last, tap } from 'rxjs';
 
 @Injectable({
@@ -8,6 +9,12 @@ import { last, tap } from 'rxjs';
 export class AuthService {
 
   http = inject(HttpClient)
+  cookiesService = inject(CookieService)
+
+
+  get isAuth(){
+    return !!this.cookiesService.get('authToken')
+  }
 
   loginAndSetCookie(payload: {employeerLastName: string, employeerPassword: string}){
     return this.http.post<{ token: string; expiration: number }>
