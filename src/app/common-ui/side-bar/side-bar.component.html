@@ -1,3 +1,33 @@
-<div>
-    YOO SIDE BAR
+<img src="/assets/images/Login-image.jpg" alt="" 
+style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
+
+<nav>
+    <ul class="main-menu-list">
+        <li *ngFor="let menuItem of menuItems">
+            <button class="menu-item">
+                <img src="/assets/images/njVYwp0.png" style="width: 18px; height: 18px;" alt="">
+                <span>{{ menuItem.label }}</span>
+            </button>
+            
+        </li>
+    </ul>
+</nav>
+
+<p style="margin-bottom: 20px;" class="sidebar-title-of-subscribers-block">Subscribers</p>
+
+@for (profile of subscribers$ | async; track profile.id ){
+    <app-subscriber-card
+    [profile]="profile"
+    >
+    </app-subscriber-card>
+}
+
+
+
+<div class="to-subscribers">
+    <a [routerLink] = "['/subscribers']"
+    class="to-subscribers-link"
+    >
+    All subscribers >>
+    </a>
 </div>

@@ -1,0 +1,55 @@
+:host{
+    display: block;
+    padding: 20px 12px;
+}
+
+.main-menu-list {
+    display: grid;
+    grid-gap: 8px;
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item{
+    padding: 16px 12px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: var(--light-color);
+    display: grid;
+    grid-template-columns: 18px 1fr max-content;
+    align-items: center;
+    grid-gap: 12px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    border-radius: 2px;
+
+    &:hover,
+    &:focus-visible{
+        background: #161616;
+        color: var(--primary-color);
+    }
+}
+
+
+.sidebar-title-of-subscribers-block{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.to-subscribers-link{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--primary-color);
+    text-decoration: none;
+    
+}
+
+.to-subscribers{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
