@@ -7,3 +7,21 @@
     grid-gap: 120px;
 }
 
+.password-input{
+    position: relative;
+}
+
+.btn-password-eye-button{
+    background: none;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
+}
+
+.btn-password-eye-button.active{
+    color: var(--primary-color);
+}

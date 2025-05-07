@@ -8,6 +8,8 @@ import { SideBarComponent } from "../side-bar/side-bar.component";
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
 
+
+export class LayoutComponent {
+  
 }
