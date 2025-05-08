@@ -8,7 +8,6 @@ style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
                 <img src="/assets/images/njVYwp0.png" style="width: 18px; height: 18px;" alt="">
                 <span>{{ menuItem.label }}</span>
             </button>
-            
         </li>
     </ul>
 </nav>
@@ -22,8 +21,6 @@ style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
     </app-subscriber-card>
 }
 
-
-
 <div class="to-subscribers">
     <a [routerLink] = "['/subscribers']"
     class="to-subscribers-link"
@@ -31,3 +28,15 @@ style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
     All subscribers >>
     </a>
 </div>
+
+<footer class="side-bar-footer">
+    @if (me) {
+            <img src="/assets/images/image.png" alt=""
+            style="width: 40px; height: 40px; border-radius: 50%;"
+            >
+            <a [routerLink]="['login']" class="settings-link">
+                <div class="medium-text">{{ me.firstName }} {{ me.lastName }}</div>
+            </a>
+            <img src="/assets/images/njVYwp0.png" style="width: 18px; height: 18px;" alt="">
+    }
+</footer>

@@ -20,4 +20,8 @@ export class ProfileService {
       map(employeers => employeers.slice(0, 3))
     );
   }
+
+  getEmpoyeeProfile(employeeId: string){
+    return this.http.get<Profile>(`https://localhost:7251/Admin/get-employeer/${employeeId}`)
+  }
 }

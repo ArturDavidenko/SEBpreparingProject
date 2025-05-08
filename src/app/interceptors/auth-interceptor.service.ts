@@ -15,8 +15,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     console.log('Interceptor triggered')
 
     const token = this.cookieService.get('authToken');
-    console.log(token)
-
+    
     if (token){
       const cloned = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`) 
