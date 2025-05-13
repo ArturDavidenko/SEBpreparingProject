@@ -49,7 +49,7 @@ export class SideBarComponent {
   menuItems = [
     {
       label: 'My page',
-      link: ''
+      link: 'profile/:id'
     },
     {
       label: 'Chats',

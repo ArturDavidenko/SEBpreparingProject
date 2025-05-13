@@ -1,0 +1,16 @@
+:host{
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    grid-gap: 24px;
+    align-items: center;
+}
+
+.profile-logo{
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+}
+
+.user-name-lastname{
+    text-align: left;
+}

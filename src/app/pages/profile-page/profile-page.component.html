@@ -1,1 +1,16 @@
+
+@if (profile$ | async; as profile) {
+
+    <app-profile-header
+    [profile]="profile"
+    > 
+
+    </app-profile-header>
+
+}
+@else {
+    <div>Profile is not found !!!!</div>
+}
+
+
 <p>profile-page works!</p>

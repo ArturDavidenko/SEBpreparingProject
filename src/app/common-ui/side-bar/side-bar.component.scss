@@ -83,3 +83,9 @@
         color: var(--primary-color);
     }
 }
+
+.menu-item a {
+  all: unset;
+  cursor: pointer;
+  display: contents;
+}
