@@ -5,7 +5,7 @@ style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
     <ul class="main-menu-list">
         <li *ngFor="let menuItem of menuItems">
             <button class="menu-item">
-                <a [routerLink]="menuItem.link">
+                <a [routerLink]="['/profile', me.id]">
                     <img src="/assets/images/njVYwp0.png" style="width: 18px; height: 18px;" alt="">
                     <span>{{ menuItem.label }}</span>
                 </a>

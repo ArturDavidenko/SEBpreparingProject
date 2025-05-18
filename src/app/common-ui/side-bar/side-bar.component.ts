@@ -27,7 +27,6 @@ export class SideBarComponent {
   me!: Profile 
   private destroy$ = new Subject<void>();
 
-
   ngOnInit(){
     const token = this.cookieService.get('authToken');
 
@@ -49,7 +48,7 @@ export class SideBarComponent {
   menuItems = [
     {
       label: 'My page',
-      link: 'profile/:id'
+      link: 'profile'
     },
     {
       label: 'Chats',

@@ -27,9 +27,7 @@ export class ProfilePageComponent {
     const token = this.cookieService.get('authToken');
     if (token){
       const decodedToken: any = jwtDecode(token)
-      const Id = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
-      this.currentEmployeeId = Id
-      this.profile$ = this.profileServices.getEmpoyeeProfile(Id);
+      this.currentEmployeeId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
     }
 
     console.log("ngOninit", this.currentEmployeeId)
@@ -37,9 +35,9 @@ export class ProfilePageComponent {
 
   profile$ = this.route.params
     .pipe(
-      switchMap(({currentEmployeeId}) => {
-        console.log("switchMap" , currentEmployeeId)
-        return this.profileServices.getEmpoyeeProfile(currentEmployeeId)
+      switchMap(({id}) => {
+        console.log("switchMap" , id)
+        return this.profileServices.getEmpoyeeProfile(id)
     })
   )
 
