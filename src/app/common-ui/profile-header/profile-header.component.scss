@@ -5,6 +5,13 @@
     align-items: center;
 }
 
+.profile-page__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 .profile-logo{
     height: 60px;
     width: 60px;

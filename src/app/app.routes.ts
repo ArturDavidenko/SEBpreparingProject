@@ -4,14 +4,17 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LayoutComponent } from './common-ui/layout/layout.component';
 import { canActivateAuth } from './auth/access.guard';
+import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 
 export const routes: Routes = [
     {path: '', component: LayoutComponent, children: [
         {path: '', component: SearchPageComponent},
         {path: 'profile/:id', component: ProfilePageComponent},
+        {path: 'edit-page', component: EditProfilePageComponent}
         ],
         canActivate: [canActivateAuth]
     },
     
     {path: 'login', component: LoginPageComponent},
+    
 ];

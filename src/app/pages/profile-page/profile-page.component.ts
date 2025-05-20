@@ -2,16 +2,14 @@ import { Component, inject } from '@angular/core';
 import { ProfileHeaderComponent } from "../../common-ui/profile-header/profile-header.component";
 import { ProfileService } from '../../data/services/profile.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Profile } from '../../data/services/interfaces/profile.interface';
 import { jwtDecode } from 'jwt-decode';
-import { switchMap, tap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeaderComponent, AsyncPipe],
+  imports: [ProfileHeaderComponent, AsyncPipe, RouterLink],
   standalone: true,
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'

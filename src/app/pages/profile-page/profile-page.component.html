@@ -1,16 +1,19 @@
 
 @if (profile$ | async; as profile) {
 
-    <app-profile-header
-    [profile]="profile"
-    > 
+    <header class="profile-page__header">
+        <app-profile-header
+        [profile]="profile"
+        > 
+        </app-profile-header>
 
-    </app-profile-header>
+        <a class="btn btn-edit-profile" [routerLink]="['/edit-page']" [state]="{ profile: profile }">
+                Edit profile
+        </a>
+    </header>
 
 }
 @else {
     <div>Profile is not found !!!!</div>
 } 
 
-
-<p>profile-page works!</p>
