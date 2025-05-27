@@ -5,21 +5,49 @@
     </app-profile-header>
 
 
-<form class="profile-form">
-    <div class="two-columns">
+<form class="profile-form__wrapper" [formGroup]="form">
+    <div class="profile-form">
+        <div class="two-columns">
+            <label for="" class="tt-form-label">
+                <span class="tt-form-label__text">
+                    Name
+                </span>
+                <input type="text" class="tt-form-input" formControlName = "firstName">
+            </label>
+
+            <label for="" class="tt-form-label">
+                <span class="tt-form-label__text">
+                    Last Name
+                </span>
+                <input type="text" class="tt-form-input" formControlName = "lastName">
+            </label>
+        </div>
+
+
         <label for="" class="tt-form-label">
             <span class="tt-form-label__text">
-                Name
+                Phone Number
             </span>
-            <input type="text" class="tt-form-input">
+            <input type="text" class="tt-form-input" formControlName = "phoneNumber">
         </label>
 
         <label for="" class="tt-form-label">
             <span class="tt-form-label__text">
-                Last Name
+                Role
             </span>
-            <input type="text" class="tt-form-input">
+            <select class="tt-form-input" formControlName="role">
+                <option value="" class="tt-form-input selector-roles">Select a role...</option>
+                @for (role of roles(); track role) {
+                    <option class="selector-roles" [value]="role">{{ role }}</option>
+                }
+            </select>
         </label>
+    </div>
+
+    <div class="profile-actions">
+        <div>
+            <button class="btn" (click)="onSave()">Save</button>
+        </div>
     </div>
 </form>
 

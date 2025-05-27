@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Profile } from './interfaces/profile.interface';
 import { map } from 'rxjs';
+import { ProfileDTO } from './interfaces/profileDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,9 @@ export class ProfileService {
   getEmpoyeeProfile(employeeId: string){
     return this.http.get<Profile>(`https://localhost:7251/Admin/get-employeer/${employeeId}`)
   }
+
+  updateEmployeeProfile(profileDataToUpdate: ProfileDTO, employeeId: string){
+    return this.http.put<ProfileDTO>(`https://localhost:7251/Admin/update-employeer/${employeeId}`, profileDataToUpdate)
+  }
+  
 }
