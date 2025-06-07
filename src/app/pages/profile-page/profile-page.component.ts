@@ -20,7 +20,7 @@ export class ProfilePageComponent {
   route = inject(ActivatedRoute)
 
   currentEmployeeId!: string
-  
+
    ngOnInit(){
     const token = this.cookieService.get('authToken');
     if (token){
