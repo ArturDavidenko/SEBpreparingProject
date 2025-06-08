@@ -3,7 +3,7 @@ import { ProfileHeaderComponent } from "../../common-ui/profile-header/profile-h
 import { ProfileService } from '../../data/services/profile.service';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
-import { switchMap } from 'rxjs';
+import { interval, startWith, switchMap } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
@@ -31,12 +31,13 @@ export class ProfilePageComponent {
     console.log("ngOninit", this.currentEmployeeId)
   }
 
-  profile$ = this.route.params
-    .pipe(
-      switchMap(({id}) => {
-        console.log("switchMap" , id)
-        return this.profileServices.getEmpoyeeProfile(id)
-    })
-  )
+    profile$ = this.route.params.pipe(
+    switchMap(({ id }) =>
+      interval(5000).pipe( 
+        startWith(0), 
+        switchMap(() => this.profileServices.getEmpoyeeProfile(id))
+      )
+    )
+  );
 
 }

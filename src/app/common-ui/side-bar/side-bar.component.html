@@ -17,7 +17,7 @@ style="width: 70px; height: 70px; margin-left: 12px; margin-bottom: 20px;">
 
 <p style="margin-bottom: 20px;" class="sidebar-title-of-subscribers-block">Subscribers</p>
 
-@for (profile of subscribers$ | async; track profile.id ){
+@for (profile of subscribers$ | async; track profile.id){
     <app-subscriber-card
     [profile]="profile"
     >
