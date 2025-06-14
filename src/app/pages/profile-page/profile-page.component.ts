@@ -3,22 +3,24 @@ import { ProfileHeaderComponent } from "../../common-ui/profile-header/profile-h
 import { ProfileService } from '../../data/services/profile.service';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
-import { interval, startWith, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeaderComponent, AsyncPipe, RouterLink],
+  imports: [ProfileHeaderComponent, AsyncPipe, RouterLink, CommonModule],
   standalone: true,
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent {
+
   profileServices = inject(ProfileService)
   cookieService = inject(CookieService)
   route = inject(ActivatedRoute)
-
+  profile$ = this.profileServices.profile$;
   currentEmployeeId!: string
 
    ngOnInit(){
@@ -29,15 +31,17 @@ export class ProfilePageComponent {
     }
 
     console.log("ngOninit", this.currentEmployeeId)
+
+    const employeeId = this.route.snapshot.params['id'];
+    this.profileServices.LoadEmpoyeeProfile(employeeId);
   }
 
-    profile$ = this.route.params.pipe(
-    switchMap(({ id }) =>
-      interval(5000).pipe( 
-        startWith(0), 
-        switchMap(() => this.profileServices.getEmpoyeeProfile(id))
-      )
-    )
-  );
+  //   profile$ = this.route.params
+  //   .pipe(
+  //     switchMap(({id}) => {
+  //       console.log("switchMap" , id)
+  //       return this.profileServices.getEmpoyeeProfile(id)
+  //   })
+  // )
 
 }

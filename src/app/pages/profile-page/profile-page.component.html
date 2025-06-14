@@ -1,18 +1,19 @@
 
-@if (profile$ | async; as profile) {
+<ng-container *ngIf="profile$ | async as profile; else notFound">
+  <header class="profile-page__header">
+    <app-profile-header [profile]="profile"></app-profile-header>
 
-    <header class="profile-page__header">
-        <app-profile-header
-        [profile]="profile"
-        > 
-        </app-profile-header>
+    <a
+      class="btn btn-edit-profile"
+      [routerLink]="['/edit-page']"
+      [state]="{ profile: profile }"
+    >
+      Edit profile
+    </a>
+  </header>
+</ng-container>
 
-        <a class="btn btn-edit-profile" [routerLink]="['/edit-page']" [state]="{ profile: profile }">
-                Edit profile
-        </a>
-    </header> 
-}
-@else {
-    <div>Profile is not found !!!!</div>
-} 
+<ng-template #notFound>
+  <div>Profile is not found!</div>
+</ng-template>
 

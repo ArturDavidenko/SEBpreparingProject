@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Profile } from './interfaces/profile.interface';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ProfileDTO } from './interfaces/profileDTO.interface';
 
 @Injectable({
@@ -10,6 +10,9 @@ import { ProfileDTO } from './interfaces/profileDTO.interface';
 export class ProfileService {
 
   http = inject(HttpClient)
+
+  private profileSubject = new BehaviorSubject<Profile | null>(null);
+  profile$ = this.profileSubject.asObservable();
   
   getEmployees() {
      return this.http.get<Profile[]>("https://localhost:7251/Admin/get-all-employeers")
@@ -22,8 +25,13 @@ export class ProfileService {
     );
   }
 
+  LoadEmpoyeeProfile(employeeId: string){
+     this.http.get<Profile>(`https://localhost:7251/Admin/get-employeer/${employeeId}`)
+      .subscribe(profile => this.profileSubject.next(profile));
+  }
+
   getEmpoyeeProfile(employeeId: string){
-    return this.http.get<Profile>(`https://localhost:7251/Admin/get-employeer/${employeeId}`)
+     return this.http.get<Profile>(`https://localhost:7251/Admin/get-employeer/${employeeId}`)
   }
 
   updateEmployeeProfile(profileDataToUpdate: ProfileDTO, employeeId: string){
