@@ -11,3 +11,15 @@
     width: 120px;
     text-decoration: none;
 }
+
+.profile-card-wrapper{
+    display: grid;
+    grid-gap: 8px;
+}
+
+.header-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}

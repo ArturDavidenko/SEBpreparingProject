@@ -63,9 +63,10 @@ export class EditProfilePageComponent {
     };
 
     const profileId = this.profile()?.id as string;
-
+    console.log(`Profile id is: ${profileId}`)
     await firstValueFrom(this.profileService.updateEmployeeProfile(formData, profileId))
-    this.router.navigate(['/profile', profileId]);
+    console.log(`Profile id after method is: ${profileId}`)
+    this.router.navigate(['/profile/', profileId]);
 
   }
 

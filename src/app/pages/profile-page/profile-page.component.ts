@@ -3,14 +3,20 @@ import { ProfileHeaderComponent } from "../../common-ui/profile-header/profile-h
 import { ProfileService } from '../../data/services/profile.service';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
-import { switchMap } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { Profile } from '../../data/services/interfaces/profile.interface';
+import { TestCardComponent } from '../../common-ui/test-card/test-card.component';
 
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeaderComponent, AsyncPipe, RouterLink, CommonModule],
+  imports: [ProfileHeaderComponent, 
+    AsyncPipe, 
+    RouterLink, 
+    CommonModule,
+    TestCardComponent
+  ],
   standalone: true,
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
@@ -22,6 +28,15 @@ export class ProfilePageComponent {
   route = inject(ActivatedRoute)
   profile$ = this.profileServices.profile$;
   currentEmployeeId!: string
+
+  profiles: Profile[] = [];
+
+  constructor() {
+    this.profileServices.getEmployees().subscribe(val => {
+      this.profiles = val
+    })
+  }
+
 
    ngOnInit(){
     const token = this.cookieService.get('authToken');
