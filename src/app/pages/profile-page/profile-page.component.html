@@ -25,4 +25,12 @@
       }
 </div>
 
+<div class="profile-card-wrapper">
+  <h3 class="header-content">Mocked test table</h3>
+  @for (profile of mockedProfiles; track mockedProfiles.id){
+          <app-test-card [profile]="profile">
+          </app-test-card>
+      }
+</div>
+
 

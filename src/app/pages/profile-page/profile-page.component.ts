@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Profile } from '../../data/services/interfaces/profile.interface';
 import { TestCardComponent } from '../../common-ui/test-card/test-card.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -26,14 +27,21 @@ export class ProfilePageComponent {
   profileServices = inject(ProfileService)
   cookieService = inject(CookieService)
   route = inject(ActivatedRoute)
+  http = inject(HttpClient)
   profile$ = this.profileServices.profile$;
   currentEmployeeId!: string
 
   profiles: Profile[] = [];
+  user: any;
+  mockedProfiles: any;
 
   constructor() {
     this.profileServices.getEmployees().subscribe(val => {
       this.profiles = val
+    })
+
+    this.http.get('https://api.example.com/profiles').subscribe((data) => {
+      this.mockedProfiles = data
     })
   }
 
@@ -49,6 +57,13 @@ export class ProfilePageComponent {
 
     const employeeId = this.route.snapshot.params['id'];
     this.profileServices.LoadEmpoyeeProfile(employeeId);
+
+    this.http.get('https://api.example.com/user').subscribe((data) => {
+      this.user = data
+      console.log(`Mock user is: ${this.user}`)
+    });
+    
+    
   }
 
   //   profile$ = this.route.params
