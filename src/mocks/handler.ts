@@ -13,7 +13,7 @@ export const handlers = [
   http.get('https://api.example.com/profiles', () => {
     return HttpResponse.json<Profile[]>([
         {
-            firstName: "Valerijs",
+            firstName: "MOKS",
             id: "674c953b5b1f7ffe6ce47437",
             image: null,
             imageId: null,
@@ -23,7 +23,7 @@ export const handlers = [
             role: "admin"
         },
         {
-            firstName: "Arturs",
+            firstName: "4POKS",
             id: "abc-123",
             image: null,
             imageId: null,

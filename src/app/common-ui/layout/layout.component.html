@@ -1,6 +1,10 @@
 <app-side-bar></app-side-bar>
 
 <div class="work-space">
+    <div class="mx-auto p-2">
+        <button class="btn w-2" (click)="changeLang('en')" [disabled]="activeLang === 'en'">EN</button>
+        <button class="btn w-2" (click)="changeLang('ru')" [disabled]="activeLang === 'ru'">RU</button>
+    </div>
     <router-outlet></router-outlet>
 </div>
 

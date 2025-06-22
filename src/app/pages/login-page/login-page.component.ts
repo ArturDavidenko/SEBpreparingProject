@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule, TranslocoModule],
   standalone: true,
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'

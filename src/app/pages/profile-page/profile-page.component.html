@@ -18,7 +18,7 @@
 </ng-template>
 
 <div class="profile-card-wrapper">
-  <h3 class="header-content">Main test table</h3>
+  <h3 class="header-content">{{'Main' | transloco}} {{'test' | transloco }} {{ 'table' | transloco }} </h3>
   @for (profile of profiles; track profile.id){
           <app-test-card [profile]="profile">
           </app-test-card>

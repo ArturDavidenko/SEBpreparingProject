@@ -8,6 +8,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Profile } from '../../data/services/interfaces/profile.interface';
 import { TestCardComponent } from '../../common-ui/test-card/test-card.component';
 import { HttpClient } from '@angular/common/http';
+import { TranslocoModule } from '@ngneat/transloco';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { HttpClient } from '@angular/common/http';
     AsyncPipe, 
     RouterLink, 
     CommonModule,
-    TestCardComponent
+    TestCardComponent,
+    TranslocoModule
   ],
   standalone: true,
   templateUrl: './profile-page.component.html',
