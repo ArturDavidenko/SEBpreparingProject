@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SideBarComponent } from "../side-bar/side-bar.component";
 import { TranslocoService } from '@ngneat/transloco';
@@ -12,9 +12,10 @@ import { TranslocoService } from '@ngneat/transloco';
 
 
 export class LayoutComponent {
-  constructor(private translocoService: TranslocoService) {}
+  translocoService = inject(TranslocoService)
 
   changeLang(lang: string) {
+    console.log(lang)
     this.translocoService.setActiveLang(lang);
   }
 
