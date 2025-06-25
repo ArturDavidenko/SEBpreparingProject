@@ -14,8 +14,10 @@ import { TranslocoModule } from '@ngneat/transloco';
 
 export class LoginPageComponent {
 
-  authService = inject(AuthService)
-  router = inject(Router);
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   isPasswordVisible = signal<Boolean>(false)
 

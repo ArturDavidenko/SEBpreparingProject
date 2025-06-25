@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { provideHttpClient } from "@angular/common/http";
 import { provideRouter } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
+import { Observable, of } from "rxjs";
+import { IAuthService } from "../../interfaces/auth.service.interface";
 
 
 class MockTranslocoLoader implements TranslocoLoader {
@@ -12,18 +14,12 @@ class MockTranslocoLoader implements TranslocoLoader {
   }
 }
 
-class MockAuthService {
+class MockAuthService implements IAuthService {
   get isAuth(): boolean {
     return true;
   }
-  loginAndSetCookie(payload: any) {
-    return {
-      pipe: () => ({
-        subscribe: ({ next }: any) => {
-          next({ token: 'mock-token', expiration: 9999 });
-        }
-      })
-    };
+  loginAndSetCookie(): Observable<void> {
+    return of(void 0);
   }
 }
 
@@ -44,12 +40,12 @@ const meta: Meta<LoginPageComponent> = {
                     },
                     loader: MockTranslocoLoader
                     }),
-                //provideHttpClient(),
-                provideRouter([]),
+                provideHttpClient(),
                 {
                     provide: AuthService,
                     useClass: MockAuthService
                 },
+                provideRouter([])
             ]
         })
     ]

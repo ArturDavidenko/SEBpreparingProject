@@ -1,30 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { last, tap } from 'rxjs';
+import { last, map, Observable, tap } from 'rxjs';
+import { IAuthService } from '../interfaces/auth.service.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
-  http = inject(HttpClient)
-  cookiesService = inject(CookieService)
+export class AuthService implements IAuthService {
 
-
+  constructor(
+    private http: HttpClient,
+    private cookiesService: CookieService
+  ){}
+    
   get isAuth(){
     return !!this.cookiesService.get('authToken')
   }
 
-  loginAndSetCookie(payload: {employeerLastName: string, employeerPassword: string}){
-    return this.http.post<{ token: string; expiration: number }>
-    ("https://localhost:7251/Auth/Login-employeers", payload).pipe(
-      tap(response => {
-        document.cookie = "token=; path=/; max-age=0";
-        document.cookie = `authToken=${response.token}; path=/; max-age=${response.expiration}`;
-      })
-    );
+  loginAndSetCookie(payload: {employeerLastName: string, employeerPassword: string}): Observable<void> {
+    return this.http
+      .post<{ token: string; expiration: number }>(
+        'https://localhost:7251/Auth/Login-employeers',
+        payload
+      )
+      .pipe(
+        tap(response => {
+          this.cookiesService.delete('token');
+          this.cookiesService.set('authToken', response.token, response.expiration / (60 * 60 * 24));
+        }),
+        map(() => void 0)
+      );
   }
-
-
 }
