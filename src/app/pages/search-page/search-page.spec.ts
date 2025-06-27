@@ -1,18 +1,32 @@
-import { http, HttpResponse } from 'msw'
-import { Profile } from '../app/data/services/interfaces/profile.interface'
- 
-export const handlers = [
-  http.get('https://api.example.com/user', () => {
-    return HttpResponse.json({
-      id: 'abc-123',
-      firstName: 'Arturs',
-      lastName: 'Davidenko',
-    })
-  }),
+import { Component } from "@angular/core";
+import { Profile } from "../../data/services/interfaces/profile.interface";
+import { of } from "rxjs";
+import { SearchPageComponent } from "./search-page.component";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ProfileService } from "../../data/services/profile.service";
+import { By } from "@angular/platform-browser";
+import { TestCardComponent } from "../../common-ui/test-card/test-card.component";
+import { CommonModule } from "@angular/common";
 
-  http.get('https://api.example.com/profiles', () => {
-    return HttpResponse.json<Profile[]>([
-        {
+// @Component({
+//     selector: 'app-test-card',
+//     standalone: true,
+//     template: '<div class="test-card-mock"></div>',
+//     inputs: ['profile']
+// })
+// class MockTestCardComponent {}
+
+
+@Component({
+    selector: 'app-test-storybook',
+    standalone: true,
+    template: '<div class="mock-storybook"></div>'
+})
+class MockTestStorybookComponent {}
+
+const mockProfiles: Profile[] = [
+    // i have mocket http GET request but i try write all manually
+    {
         "id": "674c953b5b1f7ffe6ce47437",
         "firstName": "Valerijs",
         "lastName": "Davidenko",
@@ -116,8 +130,52 @@ export const handlers = [
           "image": null,
           "imageId": null
       }
-    ])
-  })
-]
+] 
 
 
+class MockProfileService{
+    getEmployees() {
+        //console.log(mockProfiles);
+        return of(mockProfiles)
+    }
+}
+
+describe('SearchPageComponent', () => {
+    let component: SearchPageComponent;
+    let fixture: ComponentFixture<SearchPageComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                SearchPageComponent,
+                TestCardComponent,
+                MockTestStorybookComponent,
+                CommonModule
+            ],
+            providers: [
+                { provide: ProfileService, useClass: MockProfileService}
+            ]
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(SearchPageComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should call getEmployees and set profiles', () => {
+        expect(component.profiles.length).toBe(8);
+        expect(component.profiles).toEqual(mockProfiles);
+    });
+
+    it('should render correct number of test-card components', waitForAsync(async () => {
+        await fixture.whenStable();
+        fixture.detectChanges();
+        
+        const cards = fixture.debugElement.queryAll(By.css('app-test-card'));
+        expect(cards.length).toBe(mockProfiles.length);
+    }));
+});
