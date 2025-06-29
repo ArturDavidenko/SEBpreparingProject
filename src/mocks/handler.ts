@@ -12,7 +12,7 @@ export const handlers = [
 
   http.get('https://api.example.com/profiles', () => {
     return HttpResponse.json<Profile[]>([
-        {
+      {
         "id": "674c953b5b1f7ffe6ce47437",
         "firstName": "Valerijs",
         "lastName": "Davidenko",

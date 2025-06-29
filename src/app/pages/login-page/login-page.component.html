@@ -4,6 +4,7 @@
     <label class="label-form">
         {{ 'Last name' | transloco }}
         <input
+        data-testid="input-last-name"
         formControlName="employeerLastName" 
         class="input-form" type="text" placeholder="Write ur last name">
     </label>
@@ -12,6 +13,7 @@
         Password
         <div class="password-input">
             <input 
+            data-testid="input-password"
             formControlName="employeerPassword"
             class="input-form" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="Write ur password">
 
@@ -27,13 +29,11 @@
             </button>
         </div>
 
-         
-
     </label>
 
 
 
-    <button class="btn btn-shadow" type="submit">Join</button>
+    <button data-testid="login-button" class="btn btn-shadow" type="submit">Join</button>
 </form>
 
 <img src="/assets/images/Login-image.jpg" alt="logo">
