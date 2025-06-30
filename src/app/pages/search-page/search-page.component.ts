@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { TestCardComponent } from '../../common-ui/test-card/test-card.component';
 import { RouterModule } from '@angular/router';
 import { Profile } from '../../data/services/interfaces/profile.interface';
@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [TestCardComponent, RouterModule, TestStorybookComponent, CommonModule],
   templateUrl: './search-page.component.html',
-  styleUrl: './search-page.component.scss'
+  styleUrl: './search-page.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class SearchPageComponent {

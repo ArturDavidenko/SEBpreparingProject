@@ -1,10 +1,12 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication, createApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
-import { provideTransloco, TRANSLOCO_LOADER, translocoConfig, TranslocoLoader } from '@ngneat/transloco';
+import { provideTransloco, translocoConfig, TranslocoLoader } from '@ngneat/transloco';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { TestStorybookComponent } from './app/pages/test-storybook/test-storybook.component';
+import { createCustomElement } from '@angular/elements';
 
 
 async function enableMocking() {
@@ -41,6 +43,14 @@ async function main() {
       ...appConfig.providers,
     ],
   });
+
+  (async () =>{
+    const app = await createApplication({
+      providers: []
+    });
+    const el = createCustomElement(TestStorybookComponent, {injector: app.injector});
+    customElements.define('test-story-component', el);
+  })();
 }
 
 main().catch((err) => console.error(err));
