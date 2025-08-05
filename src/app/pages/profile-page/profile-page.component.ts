@@ -13,9 +13,9 @@ import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeaderComponent, 
-    AsyncPipe, 
-    RouterLink, 
+  imports: [ProfileHeaderComponent,
+    AsyncPipe,
+    RouterLink,
     CommonModule,
     TestCardComponent,
     TranslocoModule
@@ -64,8 +64,8 @@ export class ProfilePageComponent {
       this.user = data
       console.log(`Mock user is: ${this.user}`)
     });
-    
-    
+
+
   }
 
   //   profile$ = this.route.params

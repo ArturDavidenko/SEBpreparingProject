@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { last, map, Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { IAuthService } from '../interfaces/auth.service.interface';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class AuthService implements IAuthService {
     private http: HttpClient,
     private cookiesService: CookieService
   ){}
-    
+
   get isAuth(){
     return !!this.cookiesService.get('authToken')
   }
