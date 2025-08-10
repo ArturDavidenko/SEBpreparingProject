@@ -22,7 +22,7 @@ export class AuthService implements IAuthService {
   loginAndSetCookie(payload: {employeerLastName: string, employeerPassword: string}): Observable<void> {
     return this.http
       .post<{ token: string; expiration: number }>(
-        'https://localhost:7251/Auth/Login-employeers',
+        'https://localhost:7028/AuthService/Login-employeers',
         payload
       )
       .pipe(
