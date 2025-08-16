@@ -27,7 +27,7 @@ export class AuthService implements IAuthService {
       )
       .pipe(
         tap(response => {
-          this.cookiesService.delete('token');
+          this.cookiesService.delete('authToken');
           this.cookiesService.set('authToken', response.token, response.expiration / (60 * 60 * 24));
         }),
         map(() => void 0)
